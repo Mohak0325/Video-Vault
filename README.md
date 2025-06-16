@@ -77,6 +77,6 @@ npm run dev
 
 
 ### Screenshots
-![Login.png] (./assets/screenshot/Login.png)
-![Upload.png] (./assets/screenshot/Upload.png)
-![VideoList.png] (./assets/screenshot/VideosList.png)
+![Login](./assets/screenshot/Login.png)
+![Upload](./assets/screenshot/Upload.png)
+![VideosList](./assets/screenshot/VideosList.png)
