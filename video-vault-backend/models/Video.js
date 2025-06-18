@@ -9,7 +9,7 @@ const videoSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        maxLength:50
+        maxLength:100
     },
     videoUrl: {
         type: String,
