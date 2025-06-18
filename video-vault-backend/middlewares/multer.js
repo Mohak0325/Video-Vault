@@ -1,16 +1,6 @@
 const multer = require('multer');
-const path = require('path');
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    const filename = `${Date.now()}-${file.originalname}`;
-    cb(null, filename);
-  },
-});
+const storage = multer.memoryStorage(); // use memory instead of disk
 
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ['video/mp4', 'video/mkv', 'video/webm'];

@@ -1,28 +1,24 @@
-const dotenv = require('dotenv');
 const cloudinary = require('cloudinary').v2;
-dotenv.config();
+const streamifier = require('streamifier');
 
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const uploadVideo = async (filePath) => {
-    try {
-        const result = await cloudinary.uploader.upload(filePath, {
-            resource_type: 'video',
-            folder: 'video-vault',
-            chunk_size: 6000000,
-        });
-        if (!result || !result.secure_url) {
-            throw new Error('No secure URL returned');
-        }
+const uploadToCloudinary = (fileBuffer) => {
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      { resource_type: 'video' },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      }
+    );
 
-        return result;
-    } catch (error) {
-        throw new Error('Video upload failed: ' + error.message);
-    }
+    streamifier.createReadStream(fileBuffer).pipe(uploadStream);
+  });
 };
 
-module.exports = {uploadVideo, cloudinary};
+module.exports = { uploadToCloudinary };

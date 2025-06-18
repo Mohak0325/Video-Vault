@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const {uploadVideo , cloudinary} = require('../utils/cloudinary');
+const {uploadToCloudinary} = require('../utils/cloudinary');
 const Video = require('../models/Video');
 const mongoose = require('mongoose');
 const { validateVideoDetails } = require('../utils/validateData');
@@ -14,23 +14,17 @@ const uploadHelper = async (req , res) => {
 
     const { title, description } = req.body;
 
-    const videoPath = path.resolve(req.file.path);
-
-    const uploadResult = await uploadVideo(videoPath);
+    const result = await uploadToCloudinary(req.file.buffer);
     
-    if (!uploadResult || !uploadResult.secure_url) {
+    if (!result || !result.secure_url) {
       return res.status(500).json({ message: 'Video upload failed' });
     }
-
-    fs.unlink(videoPath, (err) => {
-      if (err) console.error('Failed to delete local file:', err);
-    });
 
     const newVideo = new Video({
       title,
       description,
-      videoUrl: uploadResult.secure_url,
-      publicId: uploadResult.public_id,
+      videoUrl: result.secure_url,
+      public_id: result.public_id,
       owner: req.user._id,
     });
     
