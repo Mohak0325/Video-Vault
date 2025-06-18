@@ -24,7 +24,7 @@ const uploadHelper = async (req , res) => {
       title,
       description,
       videoUrl: result.secure_url,
-      public_id: result.public_id,
+      publicId: result.public_id,
       owner: req.user._id,
     });
     
