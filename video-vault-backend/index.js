@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(limiter);
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://video-vault-umber.vercel.app',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE' , 'PATCH'],
 }));

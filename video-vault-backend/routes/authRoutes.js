@@ -31,7 +31,7 @@ authRouter.post('/register' , async (req , res) => {
             return res.status(500).json({ message: 'User registration failed' });
         }
         const token = await newUser.getJWT();
-        res.cookie('token' , token , {httpOnly: true } , {expires : new Date(Date.now() + 8 * 3600000)});
+        res.cookie('token' , token , {httpOnly: true  , secure: true, sameSite: 'None' , expires : new Date(Date.now() + 8 * 3600000)});
 
         res.status(201).json({ message: 'User registered successfully' , success:true , token: token , user: savedUser});  
     }
@@ -66,7 +66,7 @@ authRouter.post('/login' , async(req , res) => {
         if (!token) {
             return res.status(500).json({ message: 'Login failed, please try again' });
         }
-        res.cookie('token', token, {httpOnly: true } , { expires: new Date(Date.now() + 8 * 3600000)});
+        res.cookie('token', token, {httpOnly: true  , secure: true, sameSite: 'None' , expires: new Date(Date.now() + 8 * 3600000)});
 
         res.status(200).json({
             message: 'Login successful',
