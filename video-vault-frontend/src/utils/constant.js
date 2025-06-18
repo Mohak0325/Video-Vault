@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://video-vault-1zck.onrender.com/';
+export const BASE_URL = 'https://video-vault-1zck.onrender.com/api/';
