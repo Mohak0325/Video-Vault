@@ -107,8 +107,8 @@ const Details = () => {
             <h2 className="text-2xl font-bold">{video.title}</h2>
             <p className="mt-2">{video.description}</p>
             <p className="mt-2 text-sm text-blue-500">
-              Public URL: <a href={`http://localhost:5173/public/${video._id}`} className="underline" target="_blank" rel="noreferrer">
-              http://localhost:5173/public/{video._id}
+              Public URL: <a href={`https://video-vault-1zck.onrender.com/api/public/${video._id}`} className="underline" target="_blank" rel="noreferrer">
+              https://video-vault-1zck.onrender.com/api/public/{video._id}
               </a>
             </p>
             <div className="flex gap-3 mt-4">
