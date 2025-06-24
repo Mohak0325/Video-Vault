@@ -14,7 +14,6 @@ const PublicVideo = () => {
     const fetchVideo = async () => {
       try {
         const res = await axios.get(`${BASE_URL}videos/public/${id}`);
-        console.log(res.data);
         setVideo(res.data.video);
       } catch (err) {
         setError('Video not found or not publicly available');
