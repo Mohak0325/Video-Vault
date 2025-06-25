@@ -25,7 +25,7 @@ const PublicVideo = () => {
     fetchVideo();
   }, [id]);
 
-  if (loading) return <div className='"flex justify-center items-center h-screen"'><Spinner /></div>;
+  if (loading) return <div className="flex justify-center items-center h-screen"><Spinner /></div>;
   if (error) return <div className="text-center text-red-500 mt-10">{error}</div>;
 
   return (
