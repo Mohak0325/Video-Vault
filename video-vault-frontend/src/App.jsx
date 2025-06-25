@@ -14,9 +14,9 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/public/:id" element={<PublicVideo/>} />
         <Route path="/" element={<Body/>}>
           <Route path="/" element={<Auth/>} />  
-          <Route path="public/:id" element={<PublicVideo/>} />
           <Route element={<ProtectedRoutes/>}>
             <Route path="upload" element={<Upload/>} />
             <Route path="videos" element={<VideoList/>} />
