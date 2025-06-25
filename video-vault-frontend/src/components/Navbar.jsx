@@ -15,7 +15,7 @@ const Navbar = () => {
             const response = await axios.post(`${BASE_URL}auth/logout`, {} , {withCredentials: true});
             if (response.status === 200) {
                 dispatch(removeUser());
-                navigate('/login');
+                navigate('/');
             } else {
                 console.error('Logout failed');
             }
